@@ -22,7 +22,7 @@ local keyboardMappings = {
     [Enum.KeyCode.Four] = "Skill_4",
 }
 
-function Input.Init()
+function Input.Init(): {}
     local self = {}
 
     self.enabled = true
@@ -31,10 +31,10 @@ function Input.Init()
     self.input.Name = "Input"
     self.input.Parent = script
 
-    setmetatable{self, Input}
+    return setmetatable{self, Input}
 end
 
-function Input:Start(classes)
+function Input:Start(classes: {[string] : {}})
     
     self.InputBegan = UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
         if gameProcessedEvent or self.enabled == false then else
@@ -65,8 +65,8 @@ function Input:Start(classes)
     end)
 end
 
-function Input:Disable()
-    self.enabled = false
+function Input:SetEnabled(isEnabled: boolean)
+    self.enabled = isEnabled
 end
 
 function Input:Clean()
