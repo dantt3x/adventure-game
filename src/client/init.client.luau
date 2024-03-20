@@ -1,4 +1,4 @@
-local client = script.Parent
+local client = script
 local modules = {}
 local classes = {}
 

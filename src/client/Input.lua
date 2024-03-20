@@ -23,15 +23,14 @@ local keyboardMappings = {
 }
 
 function Input.Init(): {}
-    local self = {}
+    local newInput = {}
 
-    self.enabled = true
+    newInput.enabled = true
+    newInput.input = Instance.new("BindableEvent")
+    newInput.input.Name = "Input"
+    newInput.input.Parent = script
 
-    self.input = Instance.new("BindableEvent")
-    self.input.Name = "Input"
-    self.input.Parent = script
-
-    return setmetatable{self, Input}
+    return setmetatable(newInput, Input)
 end
 
 function Input:Start(classes: {[string] : {}})

@@ -8,8 +8,8 @@ local Players = game:GetService("Players")
 local localPlayer: Player = Players.LocalPlayer
 
 local moveDirections = {
-    ["MoveRight"] = Vector3.new(25,0,0),
-    ["MoveLeft"] = Vector3.new(-25,0,0),
+    ["MoveRight"] = Vector3.new(1,0,0),
+    ["MoveLeft"] = Vector3.new(-1,0,0),
 }
 
 local currentMoveDirection = {
@@ -33,12 +33,14 @@ function Movement:Start(classes)
 
     self.inputClass.input.Event:Connect(function(processedInput: string, inputType: boolean)
         if moveDirections[processedInput] then
-            currentMoveDirection[processedInput] = inputType
+            local bool = true and inputType == "Began" or false
+            currentMoveDirection[processedInput] = bool
         end
     end)
 
-    RunService.Heartbeat:Connect(function(deltaTime)
-        
+
+
+    RunService:BindToRenderStep("PlayerMove", Enum.RenderPriority.Character.Value + 1, function(deltaTime)    
         if not self.humanoid then
             if not self.playerCharacter.Humanoid then
                 warn("PlayerCharacter.Humanoid not found.")
@@ -48,16 +50,17 @@ function Movement:Start(classes)
         end
 
         if self.humanoid then
-            self.humanoid.MoveDirection = Vector3.new() -- reset player movement.
+            local finalMoveDirection = Vector3.new()
 
-            for moveDir: string, isActive: boolean in currentMoveDirection do
+            for moveDir: string, isActive: boolean in pairs(currentMoveDirection) do
                 
                 if isActive then
-                    self.humanoid.MoveDirection = moveDirections[moveDir] -- move player only on X plane.
+                    finalMoveDirection += moveDirections[moveDir] -- move player only on X plane.
                 end
 
             end
 
+            self.humanoid:Move(finalMoveDirection, false)
         end
 
     end)
