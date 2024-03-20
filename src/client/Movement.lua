@@ -5,11 +5,9 @@ Movement.__index  = Movement
 
 
 
-function Movement:Init()
-    self = {}
-
+function Movement.Init()
+    local self = {}
     self.enabled = true
-
     setmetatable(self, Movement)
 end
 

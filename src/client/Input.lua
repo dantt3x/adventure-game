@@ -22,8 +22,8 @@ local keyboardMappings = {
     [Enum.KeyCode.Four] = "Skill_4",
 }
 
-function Input:Init()
-    self = {}
+function Input.Init()
+    local self = {}
 
     self.enabled = true
 
@@ -31,7 +31,7 @@ function Input:Init()
     self.input.Name = "Input"
     self.input.Parent = script
 
-    setmetatable{Input, self}
+    setmetatable{self, Input}
 end
 
 function Input:Start(classes)

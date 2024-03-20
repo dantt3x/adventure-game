@@ -3,7 +3,7 @@
 local ClientGameState = {}
 ClientGameState.__index  = ClientGameState
 
-function ClientGameState:Init()
+function ClientGameState.Init()
 
 end
 

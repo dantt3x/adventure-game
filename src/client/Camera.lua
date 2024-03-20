@@ -3,7 +3,7 @@
 local Camera = {}
 Camera.__index = Camera
 
-function Camera:Init()
+function Camera.Init()
 
 end
 

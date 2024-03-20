@@ -4,7 +4,7 @@
 local Region = {}
 Region.__index  = Region
 
-function Region:Init()
+function Region.Init()
 
 end
 

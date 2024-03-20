@@ -3,7 +3,7 @@
 local Combat = {}
 Combat.__index  = Combat
 
-function Combat:Init()
+function Combat.Init()
 
 end
 
