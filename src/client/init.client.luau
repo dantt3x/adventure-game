@@ -1,3 +1,5 @@
+-- client loader
+
 local client = script
 local modules = {}
 local classes = {}
