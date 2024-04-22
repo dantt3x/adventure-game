@@ -6,7 +6,11 @@ local classes = {}
 
 local function startClasses()
     for name, class in pairs(classes) do
-        class:Start(classes)
+        if class["Start"] then
+            class:Start(classes) 
+        else
+            warn("class: "..name.." has no start function")
+        end
     end
 end
 
